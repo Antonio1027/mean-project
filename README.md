@@ -1,4 +1,4 @@
-# Shoping Cart
+# Shopping Cart
 
 This is a project created for edx courses, using MEAN stack development.
 Users can login with facebook.
@@ -11,7 +11,7 @@ MongoDB storage the categories, products and users. It contains the category, pr
 
 ### EXPRESS
 
-Express is used to serve HTTP requests from frontend and mobile applicaitons. 
+Express is used to serve HTTP requests from frontend and mobile applications. 
 
 ### ANGULARJS
 

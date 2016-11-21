@@ -1,0 +1,19 @@
+{
+  "name": "shopping-cart",
+  "version": "1.0.0",
+  "description": "This is a project developed with MEAN stack development",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Antonio1027/mean-project.git"
+  },
+  "author": "Antonio Shilon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Antonio1027/mean-project/issues"
+  },
+  "homepage": "https://github.com/Antonio1027/mean-project#readme"
+}
