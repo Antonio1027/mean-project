@@ -1,4 +1,10 @@
+var express = require('express');
+var wagner = require('wagner-core');
+var superagent = require('superagent');
+var assert = require('assert');
+
 var URL_ROOT = 'http://localhost:3000';
+
 
 describe('Category API', function(){
 	var server;
@@ -11,7 +17,7 @@ describe('Category API', function(){
 		models = require('./models')(wagner);
 		app.use(require('./api')(wagner));
 
-		server = app.listen(3030);
+		server = app.listen(3000);
 
 		//Make Category model available in tests
 
@@ -60,25 +66,29 @@ describe('Category API', function(){
 			{ _id: 'Laptops', parent: 'Electronics' },
 			{ _id: 'Bacon' }
 		];
-	})
+	
 
-	// Create 4 categories
+		// Create 4 categories
 
-	Category.create(categories, function(error, categories){
-		var url = URL_ROOT = '/category/parent/Electronics';
+		Category.create(categories, function(error, categories){
+			var url = URL_ROOT + '/category/parent/Electronics';
 
-		// Make an HTTP request to locahost:3000/category/parent/Electronics
-		superagent.get(url, function(error, res){
-			assert.ifError(error);
-			var result;
+			// Make an HTTP request to locahost:3000/category/parent/Electronics
+			superagent.get(url, function(error, res){
+				assert.ifError(error);
+				var result;
 
-			assert.doesNotThrow(function(){
-				result = JSON.parse(res.text);
+				assert.doesNotThrow(function(){
+					result = JSON.parse(res.text);
+				});
+
+				assert.equal(result.categories.length, 2);
+				// Should be in ascending order by _id
+				assert.equal(result.categories[0]._id, 'Laptops');
+				assert.equal(result.categories[1]._id, 'Phones');
+				done();
 			});
-
-			assert.equal(result.categories.lenght, 2);
-
 		});
-	})
+	});
 
 });
